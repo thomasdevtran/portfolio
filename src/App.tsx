@@ -1,8 +1,24 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 import ParticleField from "./ParticleField";
 import { siteContent } from "./siteContent";
 
 function App() {
+  const [isHeaderCompact, setIsHeaderCompact] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsHeaderCompact(window.scrollY > 72);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const {
     nav,
     hero,
@@ -18,7 +34,7 @@ function App() {
     <div className="app-shell" id="home">
       <div className="grid-bg" aria-hidden="true" />
 
-      <header className="site-header">
+      <header className={`site-header ${isHeaderCompact ? "site-header--compact" : ""}`}>
         <a className="brand-mark" href="#home">
           {nav.brand}
         </a>

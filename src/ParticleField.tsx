@@ -52,6 +52,18 @@ export default function ParticleField() {
     let time = 0;
     let frameId = 0;
 
+    const path = new Path2D();
+    path.arc(0, 0.15, 1, Math.PI * 0.85, Math.PI * 0.15, true);
+    path.lineTo(0.75, -0.85);
+    path.lineTo(0.55, -0.55);
+    path.quadraticCurveTo(0.0, -0.45, -0.55, -0.55);
+    path.lineTo(-0.75, -0.85);
+
+    path.closePath();
+
+    ctx.fill(path);
+    ctx.restore();
+
     for (let row = 0; row < ROWS; row += 1) {
       for (let column = 0; column < COLS; column += 1) {
         const baseX = (column + 0.5) * cellWidth;
@@ -100,13 +112,15 @@ export default function ParticleField() {
         point.x = lerp(point.x, targetX, 0.08);
         point.y = lerp(point.y, targetY, 0.08);
 
-        ctx.beginPath();
-        ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
         ctx.fillStyle =
           proximity > 0.1
             ? `rgba(240, 109, 47, ${0.24 + proximity * 0.76})`
             : "rgba(244, 239, 230, 0.14)";
-        ctx.fill();
+        ctx.save();
+        ctx.translate(point.x, point.y);
+        ctx.scale(radius, radius);
+        ctx.fill(path);
+        ctx.restore();
       });
 
       for (let index = 0; index < points.length; index += 1) {

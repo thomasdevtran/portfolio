@@ -1,6 +1,6 @@
 export const siteContent = {
   nav: {
-    brand: "Your Name",
+    brand: "Thomas Tran",
     links: [
       { label: "Work", href: "#work" },
       { label: "About", href: "#about" },
@@ -10,18 +10,20 @@ export const siteContent = {
   },
   hero: {
     eyebrow: "Creative Developer · Portfolio Scaffold",
-    titleStart: "I design and build digital work that feels",
+    titleStart: "Designing and building digital work that feels",
     titleAccent: "intentional.",
     summary:
-      "This starter landing page is set up so you can quickly swap in your own bio, projects, links, and branding without reworking the layout.",
+      "Hey, I'm Thomas Tran, a software engineer and designer, with a passion for creating intuitive and engaging digital experiences.",
     primaryCta: { label: "View my work", href: "#work" },
     secondaryCta: { label: "About me", href: "#about" },
     panelBlurb:
       "Use this space for a short intro, current role, niche, or the kind of work you want to be hired for.",
     facts: [
-      "Based in Your City",
+      "Based in Anaheim, CA",
       "Available for freelance or full-time",
       "Focused on product, web, and brand experiences",
+      "Love cats meowdy",
+      "Graduated from University of California, Irvine in 2026",
     ],
     stack: [
       "React",
@@ -37,7 +39,7 @@ export const siteContent = {
     headingStart: "Builder first,",
     headingAccent: "always learning.",
     paragraphs: [
-      "Write a concise story here about who you are, what kind of work you do, and what makes your approach different.",
+      "This is your chance to share more about your background, approach, and what makes you unique as a creator.",
       "This section is already styled for two to three short paragraphs, so you can drop in your own voice without changing the structure.",
       "If you want, this can also become a mini mission statement, experience summary, or personal intro.",
     ],
