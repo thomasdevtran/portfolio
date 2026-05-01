@@ -1,0 +1,757 @@
+/* ─── Project page shell ──────────────────────────────────────────── */
+.pp-shell {
+  width: min(860px, 100%);
+  padding: 0 1.5rem;
+  margin: 0 auto;
+  padding-bottom: 6rem;
+}
+
+.pp-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1.5rem;
+  color: var(--muted);
+}
+
+/* ─── Back nav ────────────────────────────────────────────────────── */
+.pp-back-wrap {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.pp-back {
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 180ms ease;
+}
+
+.pp-back:hover {
+  color: var(--accent);
+}
+
+/* ─── Hero ────────────────────────────────────────────────────────── */
+.pp-hero {
+  padding: 2rem 0 2.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.pp-hero__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.pp-kicker {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.pp-kicker--sep {
+  color: var(--line-strong);
+}
+
+.pp-title {
+  margin: 0 0 0.75rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.pp-subtitle {
+  margin: 0 0 1.5rem;
+  max-width: 60ch;
+  font-size: 0.98rem;
+  line-height: 1.85;
+  color: var(--muted);
+}
+
+.pp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+
+.pp-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ─── Mockup ──────────────────────────────────────────────────────── */
+.pp-mockup-wrap {
+  margin: 2.5rem 0;
+  border: 1px solid var(--line);
+  background: rgba(13, 13, 13, 0.7);
+  overflow: hidden;
+}
+
+.pp-mockup-label {
+  padding: 0.6rem 1rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ─── Sections ────────────────────────────────────────────────────── */
+.pp-section {
+  padding: 3rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.pp-section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin: 0 0 2rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.pp-section-title span {
+  color: var(--accent);
+  font-size: 0.72rem;
+}
+
+.pp-body {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--muted);
+  max-width: 72ch;
+  margin: 0;
+}
+
+/* ─── Problem / solution ──────────────────────────────────────────── */
+.pp-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.pp-callout {
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.pp-callout--solution {
+  border-color: rgba(240, 109, 47, 0.28);
+  background: rgba(240, 109, 47, 0.04);
+}
+
+.pp-callout__label {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.pp-callout p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: var(--muted);
+}
+
+/* ─── Features grid ───────────────────────────────────────────────── */
+.pp-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.pp-feature {
+  padding: 1.75rem;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: background 200ms ease;
+}
+
+.pp-feature:hover {
+  background: rgba(240, 109, 47, 0.04);
+}
+
+.pp-feature__num {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+.pp-feature__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.pp-feature__desc {
+  margin: 0;
+  font-size: 0.87rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* ─── Architecture ────────────────────────────────────────────────── */
+.pp-arch {
+  display: grid;
+  gap: 1rem;
+}
+
+.pp-arch-layer {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  align-items: start;
+}
+
+.pp-arch-layer__name {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 0.2rem;
+  border-right: 1px solid var(--line);
+  padding-right: 1.5rem;
+}
+
+.pp-arch-layer__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.pp-arch-layer__items li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.87rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.pp-arch-layer__items li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+/* ─── Achievements ────────────────────────────────────────────────── */
+.pp-achievements {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.pp-achievement {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.pp-achievement:hover {
+  border-color: rgba(240, 109, 47, 0.4);
+  background: rgba(240, 109, 47, 0.05);
+}
+
+.pp-achievement__icon {
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: rgba(90, 215, 127, 0.15);
+  color: #5ad77f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+/* ─── Footer nav ──────────────────────────────────────────────────── */
+.pp-footer-nav {
+  padding: 3rem 0 0;
+  border-top: 1px solid var(--line);
+}
+
+/* ─── Mockup shared ───────────────────────────────────────────────── */
+.mockup-shell {
+  padding: 1.5rem;
+  min-height: 380px;
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.mockup-line {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 0.5rem;
+  width: 80%;
+}
+
+.mockup-line--wide { width: 95%; }
+.mockup-line--short { width: 50%; }
+
+/* ─── Shoppyist mockup ────────────────────────────────────────────── */
+.mockup-browser {
+  flex: 1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #111;
+}
+
+.mockup-browser__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  background: #1a1a1a;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.mockup-browser__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+}
+
+.mockup-browser__dot:nth-child(1) { background: #ff5f57; }
+.mockup-browser__dot:nth-child(2) { background: #febc2e; }
+.mockup-browser__dot:nth-child(3) { background: #28c840; }
+
+.mockup-browser__url {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+  margin-left: 0.4rem;
+}
+
+.mockup-browser__body {
+  padding: 1.25rem;
+  position: relative;
+  min-height: 280px;
+}
+
+.mockup-product {
+  display: flex;
+  gap: 1rem;
+}
+
+.mockup-product__img {
+  width: 120px;
+  height: 140px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(240,109,47,0.2), rgba(13,13,13,0.8));
+  border: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+
+.mockup-product__info {
+  flex: 1;
+  padding-top: 0.5rem;
+}
+
+.mockup-btn {
+  width: 100px;
+  height: 28px;
+  background: rgba(240, 109, 47, 0.7);
+  border-radius: 3px;
+  margin-top: 0.75rem;
+}
+
+.mockup-badge {
+  position: absolute;
+  right: 1.25rem;
+  top: 1rem;
+  width: 90px;
+  background: rgba(10,10,10,0.95);
+  border: 1px solid rgba(240,109,47,0.5);
+  border-radius: 8px;
+  padding: 0.75rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 24px rgba(240,109,47,0.2);
+}
+
+.mockup-badge__ring {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: #f06d2f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px rgba(240,109,47,0.4);
+}
+
+.mockup-badge__score {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f06d2f;
+}
+
+.mockup-badge__label {
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.mockup-badge__actions {
+  display: flex;
+  gap: 0.3rem;
+  width: 100%;
+}
+
+.mockup-badge__stay,
+.mockup-badge__go {
+  flex: 1;
+  text-align: center;
+  font-size: 0.55rem;
+  padding: 0.25rem 0;
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+.mockup-badge__stay {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.6);
+}
+
+.mockup-badge__go {
+  background: rgba(240,109,47,0.8);
+  color: #fff;
+}
+
+.mockup-panel {
+  width: 140px;
+  flex-shrink: 0;
+  background: rgba(13,13,13,0.9);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mockup-panel__title {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 0.3rem;
+}
+
+.mockup-alt {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.3rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 3px;
+  background: rgba(255,255,255,0.02);
+}
+
+.mockup-alt__logo {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  background: rgba(240,109,47,0.3);
+  flex-shrink: 0;
+}
+
+.mockup-alt__name {
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.7);
+  flex: 1;
+}
+
+.mockup-alt__score {
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+/* ─── Vision Bucket mockup ────────────────────────────────────────── */
+.mockup-shell--vb {
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+}
+
+.mockup-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  background: #0d0d0d;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.mockup-nav__brand {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.mockup-nav__links {
+  display: flex;
+  gap: 1rem;
+}
+
+.mockup-nav__link {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.mockup-nav__avatar {
+  margin-left: auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #c24a15);
+}
+
+.mockup-genre-row {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.mockup-genre-chip {
+  font-size: 0.62rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  color: rgba(255,255,255,0.5);
+}
+
+.mockup-genre-chip--active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(240,109,47,0.1);
+}
+
+.mockup-movie-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+}
+
+.mockup-movie-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.mockup-movie-card__poster {
+  aspect-ratio: 2/3;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.mockup-movie-card__status {
+  font-size: 0.52rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.35rem;
+}
+
+/* ─── UCI Search mockup ───────────────────────────────────────────── */
+.mockup-shell--search {
+  flex-direction: column;
+  padding: 0;
+  gap: 0;
+}
+
+.mockup-search-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  background: rgba(13,13,13,0.6);
+}
+
+.mockup-search-logo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+}
+
+.mockup-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  padding: 0.6rem 0.75rem;
+  max-width: 500px;
+}
+
+.mockup-search-bar__icon {
+  color: rgba(255,255,255,0.4);
+  font-size: 1.1rem;
+}
+
+.mockup-search-bar__text {
+  flex: 1;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.mockup-search-bar__btn {
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.65rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.mockup-search-meta {
+  margin-top: 0.4rem;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.3);
+}
+
+.mockup-results {
+  padding: 0.5rem 1.5rem 0.75rem;
+}
+
+.mockup-result {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.mockup-result__url {
+  font-size: 0.62rem;
+  color: #5ad77f;
+  margin-bottom: 0.2rem;
+}
+
+.mockup-result__title {
+  font-size: 0.88rem;
+  color: rgba(240, 109, 47, 0.9);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.mockup-result__snippet {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+}
+
+.mockup-stats {
+  display: flex;
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+}
+
+.mockup-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem;
+  background: rgba(13,13,13,0.8);
+  gap: 0.15rem;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+}
+
+.mockup-stat__num {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .pp-two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .pp-features {
+    grid-template-columns: 1fr;
+  }
+
+  .pp-arch-layer {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .pp-arch-layer__name {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    padding-right: 0;
+    padding-bottom: 0.75rem;
+  }
+
+  .mockup-movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .mockup-shell {
+    flex-direction: column;
+  }
+
+  .mockup-panel {
+    width: 100%;
+  }
+}
