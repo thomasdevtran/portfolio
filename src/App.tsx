@@ -1,383 +1,388 @@
-import { useEffect, useState } from "react";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
-import { motion, useScroll, useSpring } from "framer-motion";
-import "./App.css";
-import ParticleField from "./ParticleField";
-import LoadingScreen from "./LoadingScreen";
-import ProjectPage from "./pages/ProjectPage";
+import { useEffect } from "react";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { siteContent } from "./siteContent";
+import ProjectPage from "./pages/ProjectPage";
+import ProjectVisual from "./ProjectVisual";
+import "./App.css";
 
-const EASE_OUT = "easeOut" as const;
-const EASE_SMOOTH = [0.25, 0.46, 0.45, 0.94] as [number, number, number, number];
-
-const viewportOnce = { once: true, margin: "-80px" as const };
-const viewportCards = { once: true, margin: "-60px" as const };
-
-/* ── project slug map ─────────────────────────────────────────────── */
-const PROJECT_SLUGS: Record<string, string> = {
-  "Shoppyist": "shoppyist",
-  "Vision Bucket": "vision-bucket",
-  "Python Search Engine": "uci-search",
-};
-
-/* ── Home page ────────────────────────────────────────────────────── */
 function HomePage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isHeaderCompact, setIsHeaderCompact] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: -999, y: -999 });
-
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1900);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => setIsHeaderCompact(window.scrollY > 72);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleMouse = (e: MouseEvent) =>
-      setMousePos({ x: e.clientX, y: e.clientY });
-    window.addEventListener("mousemove", handleMouse);
-    return () => window.removeEventListener("mousemove", handleMouse);
-  }, []);
-
-  const { nav, hero, availability, about, projects, skillGroups, contact, footer } =
-    siteContent;
-
-  const heroVisible = !isLoading;
-
+  const {
+    profile,
+    projects,
+    skillGroups,
+    contact,
+    education,
+    experience,
+    leadership,
+    resume,
+  } = siteContent;
   return (
     <>
-      <LoadingScreen isLoading={isLoading} />
-
-      <div className="app-shell" id="home">
-        <motion.div className="scroll-progress" style={{ scaleX }} />
-
-        <motion.div
-          className="cursor-glow"
-          animate={{ x: mousePos.x - 200, y: mousePos.y - 200 }}
-          transition={{ type: "spring", stiffness: 60, damping: 25 }}
-          aria-hidden="true"
-        />
-
-        <div className="grid-bg" aria-hidden="true" />
-        <div className="ambient-orb ambient-orb--1" aria-hidden="true" />
-        <div className="ambient-orb ambient-orb--2" aria-hidden="true" />
-
-        {/* HEADER */}
-        <header className={`site-header ${isHeaderCompact ? "site-header--compact" : ""}`}>
-          <a className="brand-mark" href="#home">{nav.brand}</a>
-          <nav aria-label="Primary">
-            <ul className="nav-list">
-              {nav.links.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href}>{link.label}</a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </header>
-
-        <main>
-          {/* HERO */}
-          <section className="hero-section">
-            <div className="hero-copy">
-              <motion.p
-                className="section-kicker"
-                initial={{ opacity: 0, y: 24 }}
-                animate={heroVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1, ease: EASE_OUT }}
+      <section className="hero" aria-labelledby="intro-title">
+        <div className="hero-copy">
+          <p className="eyebrow">Software engineer · UC Irvine</p>
+          <h1 id="intro-title">
+            Hi, I’m <span>Thomas.</span>
+          </h1>
+          <p className="hero-description">
+            I build thoughtful web experiences,
+            <br className="desktop-break" /> from the interface to the
+            infrastructure.
+          </p>
+          <p className="hero-summary">{profile.intro}</p>
+          <div className="hero-actions">
+            <Link className="button-primary" to="/#work">
+              Explore my work <span aria-hidden="true">↓</span>
+            </Link>
+            {contact.links.slice(1, 3).map((link) => (
+              <a
+                className="text-link"
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
               >
-                {hero.eyebrow}
-              </motion.p>
-              <motion.h1
-                initial={{ opacity: 0, y: 32 }}
-                animate={heroVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.22, ease: EASE_SMOOTH }}
-              >
-                {hero.titleStart} <em>{hero.titleAccent}</em>
-              </motion.h1>
-              <motion.p
-                className="hero-summary"
-                initial={{ opacity: 0, y: 24 }}
-                animate={heroVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.38, ease: EASE_OUT }}
-              >
-                {hero.summary}
-              </motion.p>
-              <motion.div
-                className="hero-actions"
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.52, ease: EASE_OUT }}
-              >
-                <a className="button-primary" href={hero.primaryCta.href}>
-                  {hero.primaryCta.label}
-                </a>
-                <a className="button-secondary" href={hero.secondaryCta.href}>
-                  {hero.secondaryCta.label}
-                </a>
-              </motion.div>
-            </div>
-
-            <motion.aside
-              className="hero-panel"
-              initial={{ opacity: 0, x: 40 }}
-              animate={heroVisible ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.45, ease: EASE_OUT }}
-              aria-label="Intro details"
+                {link.label} <span aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className="profile-block">
+          <div
+            className="portrait-placeholder"
+            role="img"
+            aria-label="Placeholder for Thomas Tran’s headshot"
+          >
+            <span className="portrait-initials">TT</span>
+            <span className="portrait-caption">Headshot coming soon</span>
+          </div>
+          <p className="location">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              aria-hidden="true"
             >
-              <ParticleField />
-              <div className="panel-card panel-card--intro">
-                <span className="panel-label">Current focus</span>
-                <p>{hero.panelBlurb}</p>
-              </div>
-              <div className="panel-card">
-                <span className="panel-label">Quick facts</span>
-                <ul className="fact-list">
-                  {hero.facts.map((fact) => (
-                    <li key={fact}>{fact}</li>
+              <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
+              <circle cx="12" cy="10" r="2.5" />
+            </svg>
+            {profile.location}
+          </p>
+        </div>
+      </section>
+      <section
+        className="content-section"
+        id="work"
+        aria-labelledby="work-title"
+      >
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">A few things I’ve built</p>
+            <h2 id="work-title">Selected projects</h2>
+          </div>
+          <span className="section-note">
+            Explore the live sites or read how they’re built
+          </span>
+        </div>
+        <div className="project-grid">
+          {projects.map((project) => (
+            <article
+              className={`project-card${project.featured ? " project-card--live" : ""}`}
+              key={project.id}
+            >
+              {project.featured ? (
+                <a
+                  className="project-image-link"
+                  href={project.primaryHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${project.title} live site`}
+                >
+                  <ProjectVisual id={project.id} />
+                </a>
+              ) : (
+                <Link
+                  className="project-image-link"
+                  to={`/project/${project.id}`}
+                  aria-label={`Read about ${project.title}`}
+                >
+                  <ProjectVisual id={project.id} />
+                </Link>
+              )}
+              <div className="project-card-body">
+                <p className="project-category">{project.category}</p>
+                <h3>
+                  <Link to={`/project/${project.id}`}>
+                    {project.title} <span aria-hidden="true">↗</span>
+                  </Link>
+                </h3>
+                <p className="project-description">{project.summary}</p>
+                <ul className="tags" aria-label="Technologies">
+                  {project.tags.slice(0, 3).map((tag) => (
+                    <li key={tag}>{tag}</li>
                   ))}
                 </ul>
+                <p className="project-note">{project.note}</p>
+                <div className="project-actions">
+                  {project.primaryHref && (
+                    <a
+                      className={
+                        project.featured ? "button-primary" : "text-link"
+                      }
+                      href={project.primaryHref}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {project.primaryLabel} <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                  <Link className="text-link" to={`/project/${project.id}`}>
+                    {project.primaryHref ? "Case study" : "Read case study"}{" "}
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
               </div>
-            </motion.aside>
-          </section>
-
-          {/* META STRIP */}
-          <motion.section
-            className="meta-strip"
-            aria-label="Highlights"
-            initial={{ opacity: 0, y: 16 }}
-            animate={heroVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55, delay: 1.0, ease: EASE_OUT }}
-          >
-            <div className="tag-row">
-              {hero.stack.map((item) => (
-                <span key={item} className="tag-chip">{item}</span>
-              ))}
+            </article>
+          ))}
+        </div>
+      </section>
+      <section
+        className="content-section experience-section"
+        id="experience"
+        aria-labelledby="experience-title"
+      >
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Building for real users</p>
+            <h2 id="experience-title">Experience</h2>
+          </div>
+        </div>
+        {experience.map((job) => (
+          <article className="experience-entry" key={job.company}>
+            <div className="experience-meta">
+              <h3>{job.company}</h3>
+              <p>{job.role}</p>
+              <p className="entry-date">{job.date}</p>
+              <p className="entry-context">{job.context}</p>
             </div>
-            <p className="availability">
-              <span className="availability-dot" aria-hidden="true" />
-              {availability}
-            </p>
-          </motion.section>
-
-          {/* ABOUT */}
-          <motion.section
-            className="content-section"
-            id="about"
-            initial={{ opacity: 0, y: 48 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: EASE_OUT }}
-            viewport={viewportOnce}
-          >
-            <div className="section-heading">
-              <p className="section-index">01</p>
-              <h2>About</h2>
-            </div>
-            <div className="two-column-layout">
-              <motion.div
-                initial={{ opacity: 0, x: -32 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, ease: EASE_OUT }}
-                viewport={{ once: true }}
-              >
-                <h3 className="feature-heading">
-                  {about.headingStart} <em>{about.headingAccent}</em>
-                </h3>
-              </motion.div>
-              <div className="body-copy">
-                {about.paragraphs.map((paragraph, i) => (
-                  <motion.p
-                    key={paragraph}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: i * 0.12, ease: EASE_OUT }}
-                    viewport={{ once: true }}
-                  >
-                    {paragraph}
-                  </motion.p>
+            <div>
+              <ul className="experience-highlights">
+                {job.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
                 ))}
+              </ul>
+              <Link className="text-link" to={`/project/${job.projectId}`}>
+                More about the project <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </article>
+        ))}
+      </section>
+      <section
+        className="content-section about-section"
+        id="about"
+        aria-labelledby="about-title"
+      >
+        <div>
+          <p className="eyebrow">A little background</p>
+          <h2 id="about-title">About me</h2>
+          <p className="personal-note">
+            <svg
+              viewBox="0 0 40 32"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              aria-hidden="true"
+            >
+              <path d="M8 15 7 3l10 7h6L33 3l-1 12c8 19-32 19-24 0Z" />
+              <path d="M14 18h1m10 0h1m-8 5 2 2 2-2M2 20l9 2m-8 5 8-2m18-3 9-2m-9 5 8 2" />
+            </svg>
+            Cat person. Always curious.
+          </p>
+        </div>
+        <div className="about-copy">
+          {profile.about.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+          <p className="availability">
+            <span aria-hidden="true" />
+            {siteContent.availability}
+          </p>
+        </div>
+      </section>
+      <section
+        className="content-section education-section"
+        id="education"
+        aria-labelledby="education-title"
+      >
+        <div>
+          <p className="eyebrow">Where I’ve learned</p>
+          <h2 id="education-title">Education</h2>
+        </div>
+        <div className="education-list">
+          {education.map((school) => (
+            <article className="education-detail" key={school.school}>
+              <div className="education-top">
+                <div>
+                  <h3>{school.school}</h3>
+                  <p>{school.degree}</p>
+                </div>
+                <span className="education-year">{school.date}</span>
               </div>
-            </div>
-          </motion.section>
-
-          {/* PROJECTS */}
-          <motion.section
-            className="content-section"
-            id="work"
-            initial={{ opacity: 0, y: 48 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: EASE_OUT }}
-            viewport={viewportOnce}
-          >
-            <div className="section-heading">
-              <p className="section-index">02</p>
-              <h2>Selected Work</h2>
-            </div>
-            <div className="project-grid">
-              {projects.map((project, index) => {
-                const slug = PROJECT_SLUGS[project.title];
-                return (
-                  <motion.article
-                    className={`project-card${index === 0 ? " project-card--featured" : ""}`}
-                    key={project.title}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1, ease: EASE_OUT }}
-                    viewport={viewportCards}
-                    whileHover={{ y: -8, transition: { duration: 0.22, ease: EASE_OUT } }}
-                  >
-                    <p className="project-number">
-                      {(index + 1).toString().padStart(2, "0")}
-                    </p>
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                    <div className="tag-row">
-                      {project.tags.map((tag) => (
-                        <span key={tag} className="tag-chip tag-chip--small">{tag}</span>
-                      ))}
-                    </div>
-                    <div className="project-card__actions">
-                      {slug && (
-                        <Link to={`/project/${slug}`} className="project-link">
-                          Case study →
-                        </Link>
-                      )}
-                      {project.href.startsWith("http") && (
-                        <a
-                          href={project.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-link"
-                        >
-                          {project.linkLabel} ↗
-                        </a>
-                      )}
-                    </div>
-                  </motion.article>
-                );
-              })}
-            </div>
-          </motion.section>
-
-          {/* SKILLS */}
-          <motion.section
-            className="content-section"
-            id="skills"
-            initial={{ opacity: 0, y: 48 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: EASE_OUT }}
-            viewport={viewportOnce}
-          >
-            <div className="section-heading">
-              <p className="section-index">03</p>
-              <h2>Skills &amp; Stack</h2>
-            </div>
-            <div className="skills-grid">
-              {skillGroups.map((group, i) => (
-                <motion.article
-                  className="skill-card"
-                  key={group.title}
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, delay: i * 0.08, ease: EASE_OUT }}
-                  viewport={viewportCards}
-                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                >
-                  <p className="skill-card__title">{group.title}</p>
-                  <ul>
-                    {group.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </motion.article>
-              ))}
-            </div>
-          </motion.section>
-
-          {/* CONTACT */}
-          <motion.section
-            className="content-section"
-            id="contact"
-            initial={{ opacity: 0, y: 48 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: EASE_OUT }}
-            viewport={viewportOnce}
-          >
-            <div className="section-heading">
-              <p className="section-index">04</p>
-              <h2>Contact</h2>
-            </div>
-            <div className="two-column-layout">
-              <motion.div
-                initial={{ opacity: 0, x: -32 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, ease: EASE_OUT }}
-                viewport={{ once: true }}
-              >
-                <h3 className="feature-heading">
-                  {contact.headingStart} <em>{contact.headingAccent}</em>
-                </h3>
-                <p className="body-copy body-copy--single">{contact.summary}</p>
-              </motion.div>
-              <div className="contact-list">
-                {contact.links.map((link, i) => (
-                  <motion.a
-                    key={link.label}
-                    className="contact-row"
-                    href={link.href}
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.09, ease: EASE_OUT }}
-                    viewport={{ once: true }}
-                    whileHover={{ x: 6, transition: { duration: 0.18 } }}
-                  >
-                    <span>{link.label}</span>
-                    <strong>{link.value}</strong>
-                  </motion.a>
+              <p className="education-note">{school.note}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section
+        className="content-section"
+        id="skills"
+        aria-labelledby="skills-title"
+      >
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Tools I work with</p>
+            <h2 id="skills-title">Skills &amp; technologies</h2>
+          </div>
+        </div>
+        <div className="skills-grid">
+          {skillGroups.map((group) => (
+            <div className="skill-group" key={group.title}>
+              <h3>{group.title}</h3>
+              <ul>
+                {group.items.map((item) => (
+                  <li key={item}>{item}</li>
                 ))}
-              </div>
+              </ul>
             </div>
-          </motion.section>
-        </main>
-
-        <footer className="site-footer">
-          <p>{footer.copy}</p>
-          <a href="#home">{footer.backToTopLabel}</a>
-        </footer>
-      </div>
+          ))}
+        </div>
+      </section>
+      <section
+        className="content-section leadership-section"
+        aria-labelledby="leadership-title"
+      >
+        <div>
+          <p className="eyebrow">Beyond the code</p>
+          <h2 id="leadership-title">Leadership</h2>
+        </div>
+        <div className="leadership-detail">
+          <div className="education-top">
+            <div>
+              <h3>{leadership.title}</h3>
+              <p>{leadership.organization}</p>
+            </div>
+            <span className="education-year">{leadership.date}</span>
+          </div>
+          <p>{leadership.description}</p>
+        </div>
+      </section>
+      <section
+        className="contact-section"
+        id="contact"
+        aria-labelledby="contact-title"
+      >
+        <div>
+          <p className="eyebrow">Have something in mind?</p>
+          <h2 id="contact-title">Let’s connect.</h2>
+          <p>
+            I’m open to software engineering roles and interesting projects.
+            <br className="desktop-break" /> I’d love to hear what you’re
+            working on.
+          </p>
+          <a className="contact-email" href={contact.links[0].href}>
+            {contact.links[0].value} <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div className="contact-socials">
+          <a
+            className="text-link"
+            href={resume.href}
+            download={resume.filename}
+          >
+            {resume.label} <span aria-hidden="true">↓</span>
+          </a>
+          {contact.links
+            .slice(1)
+            .filter((link) => link.href !== "#")
+            .map((link) => (
+              <a
+                className="text-link"
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {link.label} <span aria-hidden="true">↗</span>
+              </a>
+            ))}
+        </div>
+      </section>
     </>
   );
 }
 
-/* ── Root with routing ────────────────────────────────────────────── */
 function App() {
-  const location = useLocation();
-
+  const { pathname, hash, key } = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, [location.pathname]);
-
+    if (hash) {
+      const target = document.getElementById(hash.slice(1));
+      target?.scrollIntoView();
+      if (hash === "#main") target?.focus({ preventScroll: true });
+    } else window.scrollTo({ top: 0, behavior: "auto" });
+    if (pathname === "/") document.title = "Thomas Tran — Software Engineer";
+  }, [pathname, hash, key]);
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/project/:id" element={<ProjectPage />} />
-    </Routes>
+    <div className="site-shell" id="home">
+      <Link className="skip-link" to={`${pathname}#main`}>
+        Skip to content
+      </Link>
+      <header className="site-header">
+        <Link className="brand" to="/" aria-label="Thomas Tran home">
+          tt<span>.</span>
+        </Link>
+        <nav aria-label="Main navigation">
+          {siteContent.nav.links.map((link) => (
+            <Link key={link.href} to={`/${link.href}`}>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+        <a
+          className="header-contact"
+          href={siteContent.resume.href}
+          download={siteContent.resume.filename}
+        >
+          {siteContent.resume.label} <span aria-hidden="true">↓</span>
+        </a>
+      </header>
+      <main id="main" tabIndex={-1}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/project/:id" element={<ProjectPage />} />
+          <Route
+            path="*"
+            element={
+              <div className="not-found">
+                <h1>Page not found</h1>
+                <p>Let’s get you back to the portfolio.</p>
+                <Link className="text-link" to="/">
+                  Back to home →
+                </Link>
+              </div>
+            }
+          />
+        </Routes>
+      </main>
+      <footer className="site-footer">
+        <p>© {new Date().getFullYear()} Thomas Tran</p>
+        <span>Made with care, and React.</span>
+        <Link to={`${pathname}#home`}>
+          Back to top <span aria-hidden="true">↑</span>
+        </Link>
+      </footer>
+    </div>
   );
 }
-
 export default App;

@@ -1,98 +1,145 @@
 export const siteContent = {
+  profile: {
+    location: "Anaheim, California",
+    intro:
+      "I’m a software engineer and UC Irvine graduate, pursuing a part-time master’s in Computer Science at Cal State Fullerton. I build full-stack applications with a focus on performance, reliability, and the people using them.",
+    about: [
+      "I’m Thomas, a software engineer based in Anaheim, California. I graduated from UC Irvine with a B.S. in Software Engineering in March 2026 and am pursuing a part-time M.S. in Computer Science at Cal State Fullerton, expected May 2028.",
+      "My work spans browser extensions, full-stack web applications, and search systems. I enjoy taking a project from its first working version through the security, testing, and performance improvements that make it ready for real users.",
+      "I’m open to software engineering opportunities and relocation within California.",
+    ],
+  },
+  resume: {
+    href: `${process.env.PUBLIC_URL}/Thomas-Tran-Resume.pdf`,
+    label: "Résumé",
+    filename: "Thomas-Tran-Resume.pdf",
+  },
+  education: [
+    {
+      school: "California State University, Fullerton",
+      degree: "M.S. Computer Science · Part-time",
+      date: "Expected May 2028",
+      note: "Fullerton, California",
+    },
+    {
+      school: "University of California, Irvine",
+      degree: "B.S. Software Engineering",
+      date: "March 2026",
+      note: "Dean’s Honor List · Spring 2025, Winter 2026",
+    },
+  ],
+  experience: [
+    {
+      company: "Shoppyist",
+      role: "Software Engineer · Industry Capstone",
+      date: "Sep 2025 – Mar 2026",
+      context: "UC Irvine industry partnership · Irvine, CA",
+      highlights: [
+        "Shipped a TypeScript Chrome extension to 500+ users, collaborating with engineers and data scientists from initial development through production release.",
+        "Reduced runtime API calls by 20% and page load time from about 1 second to under 500 ms by precomputing MongoDB telemetry into static JSON for 15+ product configurations.",
+        "Resolved integration race conditions by redesigning message passing between background service workers and content scripts.",
+        "Built a Cloudflare Workers and MongoDB backend for click tracking, with offline write buffering and synchronization when connectivity returns.",
+      ],
+      projectId: "shoppyist",
+    },
+  ],
+  leadership: {
+    title: "Eagle Scout & Senior Patrol Leader",
+    organization: "Troop 413",
+    date: "2016 – 2022",
+    description:
+      "Led a 25-person troop and coordinated 30 volunteers for an Eagle Scout service project, managing logistics, budget, and stakeholders.",
+  },
   nav: {
-    brand: "Thomas Tran",
     links: [
       { label: "Work", href: "#work" },
+      { label: "Experience", href: "#experience" },
       { label: "About", href: "#about" },
+      { label: "Education", href: "#education" },
       { label: "Skills", href: "#skills" },
       { label: "Contact", href: "#contact" },
     ],
   },
-  hero: {
-    eyebrow: "Software Engineer · UC Irvine 2026",
-    titleStart: "Building digital work that feels",
-    titleAccent: "intentional.",
-    summary:
-      "Hey, I'm Thomas — a full-stack engineer who cares as much about the code as the experience it creates. I build fast, reliable web applications from the browser all the way to the backend.",
-    primaryCta: { label: "View my work", href: "#work" },
-    secondaryCta: { label: "About me", href: "#about" },
-    panelBlurb:
-      "Building production-grade web apps — from Chrome extensions and React SPAs to serverless backends and data pipelines.",
-    facts: [
-      "Based in Anaheim, CA",
-      "Available for full-time or freelance",
-      "B.S. Software Engineering, UC Irvine",
-      "Full-stack, systems, and browser extension dev",
-      "Cat person (meowdy 🐱)",
-    ],
-    stack: [
-      "React",
-      "TypeScript",
-      "Vue.js",
-      "Node.js",
-      "Python",
-      "Cloudflare Workers",
-    ],
-  },
   availability: "Open to opportunities",
-  about: {
-    headingStart: "Builder first,",
-    headingAccent: "always learning.",
-    paragraphs: [
-      "I'm a Software Engineering student at UC Irvine (Class of 2026), focused on building web applications that are technically rigorous and intuitively designed. My coursework spans Data Structures & Algorithms, Computer Networks, Database Management, and Operating Systems.",
-      "My projects range from architecting multi-context Chrome extensions with type-safe messaging systems to building serverless Cloudflare Workers backends and high-performance Python search engines. I care about performance, clean code, and user experience equally.",
-      "I'm currently open to full-time software engineering roles. If you're building something that demands both technical depth and thoughtful design, let's talk.",
-    ],
-  },
   projects: [
     {
-      title: "Shoppyist",
-      description:
-        "Architected a Chrome extension suite (Manifest V3) using Vue 3 + TypeScript with a type-safe messaging system coordinating background workers, content scripts, and popup views. Built a Cloudflare Workers backend with MongoDB handling click tracking, telemetry, and an ETL pipeline that enables 7+ political/ethical stances from a single codebase.",
-      tags: ["Vue.js", "TypeScript", "Cloudflare Workers", "MongoDB", "Firebase", "Chrome MV3"],
-      href: "#",
-      linkLabel: "View project",
-    },
-    {
+      id: "vision-bucket",
+      category: "Live demo · Full-stack application",
       title: "Vision Bucket",
-      description:
-        "Led full-stack development with a React/TypeScript frontend and Node.js/Express backend. Engineered a secure RESTful API with user authentication as the core data foundation, and improved page load performance by 25% through code splitting and lazy loading.",
-      tags: ["React", "TypeScript", "Node.js", "Express", "MongoDB"],
-      href: "https://github.com/trollbro71/vision_bucket",
-      linkLabel: "View on GitHub",
+      summary:
+        "Discover films, build a watchlist, write reviews, and join discussions. Try the no-sign-in demo, then explore the security, testing, and API work behind it.",
+      tags: ["React", "TypeScript", "Express", "Firestore"],
+      primaryHref: "https://thomasdevtran.github.io/vision_bucket/#/",
+      primaryLabel: "Try live demo",
+      note: "No sign-in needed · Demo activity stays in your browser",
+      featured: true,
     },
     {
-      title: "Python Search Engine",
-      description:
-        "Built a high-performance search engine indexing 50,000+ documents with sub-500ms query latency. Custom inverted index reduced memory footprint by 40% and kept the full index under 500MB, backed by an automated web crawler for data population.",
-      tags: ["Python", "Algorithms", "Web Crawling", "Information Retrieval"],
-      href: "https://github.com/trollbro71/UCI-websearch",
-      linkLabel: "View on GitHub",
+      id: "block-by-cube",
+      category: "Live website · Creative tool",
+      title: "Block by Cube",
+      summary:
+        "Turn Minecraft items, blocks, and player skins into real-life cube crafts. Get paint palettes, material counts, and step-by-step guides with 2D and 3D previews.",
+      tags: ["Vue", "TypeScript", "Three.js"],
+      primaryHref: "https://www.blockbycube.com/",
+      primaryLabel: "Visit website",
+      note: "Free build guides · No account needed",
+      featured: true,
+    },
+    {
+      id: "shoppyist",
+      category: "Industry capstone · Browser extension",
+      title: "Shoppyist",
+      summary:
+        "A shopping extension shipped to 500+ users. Helped improve load times and build reliable messaging and a backend that buffers writes while offline.",
+      tags: ["TypeScript", "Cloudflare Workers", "MongoDB"],
+      primaryHref: "",
+      primaryLabel: "",
+      note: "Industry capstone · Shipped to 500+ users",
+      featured: false,
+    },
+    {
+      id: "uci-search",
+      category: "Search & information retrieval",
+      title: "Search Engine & Web Crawler",
+      summary:
+        "Ranked search across 50,000+ documents, with average queries below 500 ms. Built a multithreaded crawler and a memory-efficient indexing pipeline.",
+      tags: ["Python", "TF-IDF", "Web Crawling"],
+      primaryHref: "https://github.com/thomasdevtran/UCI-websearch",
+      primaryLabel: "View crawler source",
+      note: "50,000+ documents · Average queries below 500 ms",
+      featured: false,
     },
   ],
   skillGroups: [
     {
       title: "Languages",
-      items: ["TypeScript / JavaScript", "Python", "Java", "C / C++ / Rust"],
+      items: ["TypeScript / JavaScript", "Python", "Java", "C / C++", "SQL"],
     },
     {
-      title: "Frontend",
-      items: ["React", "Vue.js", "HTML & CSS", "Bootstrap"],
+      title: "Web & backend",
+      items: ["React", "Node.js / Express", "Cloudflare Workers", "REST APIs"],
     },
     {
-      title: "Backend",
-      items: ["Node.js / Express", "Cloudflare Workers", "REST APIs", "Firebase"],
+      title: "Data & tools",
+      items: [
+        "MongoDB / Firestore",
+        "PostgreSQL / Firebase Auth",
+        "Docker",
+        "Git / GitHub Actions",
+      ],
     },
     {
-      title: "Data & Cloud",
-      items: ["MongoDB / MySQL / PG", "AWS S3", "Docker", "Git & CI/CD"],
+      title: "Testing",
+      items: [
+        "Jest / Pytest",
+        "Supertest",
+        "Firebase emulators",
+        "Unit & integration testing",
+      ],
     },
   ],
   contact: {
-    headingStart: "Let's make your next",
-    headingAccent: "idea real.",
-    summary:
-      "I'm always open to interesting projects and opportunities. Reach out through any of these channels.",
     links: [
       {
         label: "Email",
@@ -101,19 +148,14 @@ export const siteContent = {
       },
       {
         label: "GitHub",
-        value: "github.com/trollbro71",
-        href: "https://github.com/trollbro71",
+        value: "github.com/thomasdevtran",
+        href: "https://github.com/thomasdevtran",
       },
       {
         label: "LinkedIn",
         value: "linkedin.com/in/ThomasTran1452",
         href: "https://www.linkedin.com/in/ThomasTran1452",
       },
-      { label: "Resume", value: "Download PDF", href: "#" },
     ],
-  },
-  footer: {
-    copy: "© 2026 Thomas Tran. Built with React & Framer Motion.",
-    backToTopLabel: "Back to top ↑",
   },
 };

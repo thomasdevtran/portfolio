@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+# Thomas Tran — Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React + TypeScript portfolio with project case studies, experience, education, skills, leadership, and a downloadable résumé.
 
-## Available Scripts
+## Run locally
 
-In the project directory, you can run:
+```sh
+npm ci
+npm start
+```
 
-### `npm start`
+Open http://localhost:3000/portfolio/. Use `npm run build` for production and `npm test -- --watchAll=false --runInBand` for navigation/content checks.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Update content
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `src/siteContent.ts`: profile, experience, education, project summaries, skills, leadership, contact links, and résumé path.
+- `src/data/projectDetails.tsx`: project details. Roles, dates, repository links, and outcomes are aligned with the supplied résumé.
+- `public/Thomas-Tran-Resume.pdf`: an unchanged copy of the supplied PDF, linked in the header and contact section.
+- `src/ProjectVisual.tsx`: abstract project illustrations, not screenshots.
+- `src/App.css` and `src/styles/ProjectPage.css`: shared design and responsive layouts.
+- `public/index.html`: page description and social metadata.
 
-### `npm test`
+The headshot remains an intentional placeholder until a photo is supplied.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Hosting
 
-### `npm run build`
+The site is deployed to https://thomasdevtran.github.io/portfolio/ by `.github/workflows/deploy-pages.yml`. Pushes to `main` run tests, build the app, and deploy the build artifact to GitHub Pages. The workflow can also be run manually.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+HashRouter keeps project URLs refresh-safe on static hosting, for example `/portfolio/#/project/vision-bucket`. Section links use the router too. The `homepage` field sets the production base path, and local artwork and résumé URLs use `PUBLIC_URL` so they work below `/portfolio/`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Tests
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+CRA's Jest version does not resolve React Router 7's package exports. The `jest.moduleNameMapper` entries in `package.json` point to the installed CommonJS files; `src/setupTests.ts` supplies encoding APIs missing from the older jsdom environment.
 
-### `npm run eject`
+## Live project showcase
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Vision Bucket and Block by Cube are featured first, with direct links to their live sites. Shoppyist and Search Engine & Web Crawler remain available as résumé projects. Each has its own case study.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Vision Bucket's demo is explicitly described as a browser-local demo with live movie data, separate from the server-side authentication and persistence documented by its backend repository. The exact about-page link is also included in the case study.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The live project artwork is a composed illustration, not a screenshot. Local assets in `public/projects/` were collected from the supplied live sites:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Film poster artwork: TMDB, as displayed by Vision Bucket. Source images: `https://image.tmdb.org/t/p/w500/bjiS5ipwxb9JFy3XRRN4OAilSeX.jpg`, `https://image.tmdb.org/t/p/w500/5rhTDKUhPYvpdQIijFIs5VoWsON.jpg`, and `https://image.tmdb.org/t/p/w500/tN799oUR0f1gUKDYdMNrDaY7I51.jpg`. The responses are WebP and are stored with `.webp` extensions.
+- Minecraft item textures: Mojang Studios, as displayed by Block by Cube at `/textures/items/diamond_sword.png`, `/textures/items/rose.png`, and `/textures/items/emerald.png` (version 26.3).
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Attribution appears on each relevant case study. Block by Cube's technical description is based on its live site and public repository README/package manifest at `https://github.com/thomasdevtran/minecraft_block_by_block`.
