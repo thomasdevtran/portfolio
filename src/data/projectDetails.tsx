@@ -16,16 +16,16 @@ export interface ProjectDetail {
   artworkCredit?: string;
 }
 
-// The supplied résumé is the source for roles, dates, links, and outcome figures.
+// Content follows the November 2026 résumé and reviewed project source.
 export const projectDetails: ProjectDetail[] = [
   {
     id: "block-by-cube",
     title: "Block by Cube",
     subtitle:
-      "A creative tool that turns Minecraft items, blocks, and player skins into step-by-step guides for real-life cube crafts.",
-    date: "Live website",
-    role: "Web development",
-    tags: ["Vue", "TypeScript", "Three.js", "Vite", "Vitest", "Vercel"],
+      "A full-stack craft-planning app with interactive 3D guides, accounts, and a private cloud library for saved builds.",
+    date: "Sep 2026 – Present",
+    role: "Full-Stack Developer",
+    tags: ["Vue 3", "TypeScript", "Three.js", "Supabase", "PostgreSQL", "Vitest", "PGlite", "Vercel"],
     links: [
       {
         label: "Visit website",
@@ -39,16 +39,16 @@ export const projectDetails: ProjectDetail[] = [
       },
     ],
     overview:
-      "Block by Cube helps people make Minecraft-inspired crafts from physical cubes. Choose an item, block, or player skin, then follow a guide with a paint palette, material count, and build steps. The live site is free to explore without an account.",
+      "Block by Cube turns 1,100+ Minecraft items and blocks, plus custom player skins, into plans for physical cube crafts. Each guide includes paint colors, material counts, assembly steps, and 2D or interactive 3D previews. Browse without an account, or sign in to save builds and resume them on another device.",
     problem:
-      "A reference image alone leaves makers counting pixels, estimating materials, and keeping track of each row or layer while they build.",
+      "A reference image leaves makers counting pixels, estimating materials, and tracking assembly by hand. Returning to a project on another device also requires preserving its settings, images, and progress without exposing another person’s private builds.",
     solution:
-      "Convert image pixels into cubes, group colors into a paint palette, and generate row-by-row or layer-by-layer instructions. Pair the written steps with 2D grids and interactive 3D previews, and save progress on the current device.",
+      "Generate cube layouts, paint palettes, and row-by-row or layer-by-layer instructions in a standalone TypeScript engine. Pair those guides with Vue and Three.js, then use Supabase accounts, PostgreSQL access policies, and private image storage for cloud saves. Revision checks reject stale updates so an older session cannot overwrite newer saved progress.",
     features: [
       {
         title: "Searchable build catalog",
         description:
-          "Browse items, blocks, and plants, search by name, and switch between current and older textures. Starter projects provide a quick way into a first build.",
+          "Browse 1,100+ items and blocks, search by name, and switch between current and older textures. Starter projects provide a quick way into a first build.",
       },
       {
         title: "Material lists & guided steps",
@@ -58,7 +58,7 @@ export const projectDetails: ProjectDetail[] = [
       {
         title: "Player skin builds",
         description:
-          "Turn a player skin into layer-by-layer instructions for each body part. Uploaded skin files stay local to the browser.",
+          "Turn a player skin into layer-by-layer instructions for each body part. Images are processed locally; explicitly saving a skin build stores its PNG in private cloud storage.",
       },
       {
         title: "2D & 3D previews",
@@ -66,14 +66,24 @@ export const projectDetails: ProjectDetail[] = [
           "Use a 2D grid or an interactive Three.js voxel preview. The 3D viewer loads separately so it does not block the written guide.",
       },
       {
-        title: "Progress, print & share",
+        title: "Accounts & private cloud library",
         description:
-          "Resume saved progress on the same device, print a complete guide, or share a link that preserves the item’s build settings.",
+          "Added Supabase sign-in and a My Builds library that restores settings and saved progress across devices. PostgreSQL row-level security restricts builds and skin images to their owner, while revision checks reject stale saves.",
       },
       {
-        title: "Testable generation engine",
+        title: "Progress, print & share",
         description:
-          "The image-to-cubes, paint-palette, and step-generation logic lives in a standalone TypeScript engine with unit tests.",
+          "Keep progress on the current device, save a build to an account for later, print a complete guide, or share a link that preserves item build settings.",
+      },
+      {
+        title: "Community & moderation · In development",
+        description:
+          "Implemented discussion topics, replies, private reports, and a moderator queue with role checks, posting quotas, and an audit trail. Hosted discussion and moderation activation is pending.",
+      },
+      {
+        title: "Engine & database verification",
+        description:
+          "Added Vitest engine and client tests plus PGlite checks that run SQL migrations and access-policy assertions. GitHub Actions runs tests, catalog validation, type-checked builds, and dependency audits.",
       },
     ],
     architecture: [
@@ -94,20 +104,30 @@ export const projectDetails: ProjectDetail[] = [
         ],
       },
       {
-        layer: "Assets & Persistence",
+        layer: "Accounts & Persistence",
         items: [
-          "Extracted textures and a generated item catalog",
+          "Supabase authentication and a PostgreSQL saved-build library",
+          "Owner-only row-level security and private skin-image storage",
+          "Revision checks and database-enforced build and upload quotas",
           "Local storage for build progress and preferences",
-          "Uploaded skin images remain in the browser",
+        ],
+      },
+      {
+        layer: "Services & Verification",
+        items: [
           "Vercel function for player-skin lookups through Mojang",
+          "Redis-backed page-visit counter with Do Not Track support",
+          "Vitest and PGlite checks for migrations, ownership, quotas, and moderation",
+          "GitHub Actions release checks",
         ],
       },
     ],
     achievements: [
-      "Published a usable craft-planning tool at blockbycube.com",
-      "Connected a searchable catalog to materials, build steps, and previews",
-      "Supported both item crafts and player-skin builds",
-      "Added saved progress, printable guides, and shareable build settings",
+      "Published craft guides for 1,100+ Minecraft items and blocks, plus player skins",
+      "Added accounts and a private library for resuming saved builds across devices",
+      "Protected private builds with ownership policies and stale-update checks",
+      "Implemented community and moderation workflows, with hosted activation pending",
+      "Added repeatable engine, migration, and access-policy checks in CI",
     ],
     artworkCredit:
       "Minecraft textures and game artwork belong to Mojang Studios. Block by Cube is an independent fan project, not an official Minecraft product.",
@@ -147,7 +167,7 @@ export const projectDetails: ProjectDetail[] = [
       {
         title: "Click-tracking backend",
         description:
-          "Built a Cloudflare Workers and MongoDB backend to handle click-tracking data.",
+          "Co-built a Cloudflare Workers and MongoDB backend to handle click-tracking data.",
       },
       {
         title: "Offline write buffering",
@@ -181,7 +201,6 @@ export const projectDetails: ProjectDetail[] = [
     ],
     achievements: [
       "Contributed to a production release reaching 500+ users",
-      "Reduced runtime API calls by 20%",
       "Reduced page load time from about 1 second to under 500 ms",
       "Supported 15+ product configurations with precomputed data",
       "Resolved integration race conditions in extension messaging",
@@ -191,8 +210,8 @@ export const projectDetails: ProjectDetail[] = [
     id: "vision-bucket",
     title: "Vision Bucket",
     subtitle:
-      "A full-stack movie platform with watch tracking, ratings, profiles, and discussion boards.",
-    date: "Full-stack project",
+      "A React and Express movie platform with watch tracking, collaborative lists, reviews, and discussions.",
+    date: "Apr 2025 – Sep 2026",
     role: "Full-Stack Developer",
     tags: [
       "React",
@@ -227,7 +246,7 @@ export const projectDetails: ProjectDetail[] = [
       },
     ],
     overview:
-      "Vision Bucket began as a team project for movie tracking, ratings, profiles, and discussion. I extended it with backend security, tests, and continuous integration, adding the checks and tooling needed to maintain the application with more confidence.",
+      "Vision Bucket began as a team project. I extended the React and Express application with movie tracking, collaborative lists, reviews, and discussions, alongside backend authorization, integration tests, and a migration that preserves existing Firestore records.",
     demoNote:
       "Try it without signing in: find a film, save it to your library, add a rating or review, and reply to a discussion. Film data comes live from TMDB through the movie API. Your activity stays in this browser; the demo does not demonstrate server-side user authentication. The repositories document the full backend implementation.",
     artworkCredit:
@@ -235,12 +254,12 @@ export const projectDetails: ProjectDetail[] = [
     problem:
       "User-generated content needs access controls that restrict edits to authorized users. Backend changes also need repeatable integration checks, documented endpoints, and a safe way to evolve stored data.",
     solution:
-      "Verify Firebase ID tokens, enforce roles and resource ownership, and run Supertest and Firebase-emulator integration tests in CI. Add a reversible Firestore migration, OpenAPI documentation, rate limiting, and structured request logging.",
+      "Verify Firebase ID tokens, enforce roles and resource ownership, and run Supertest and Firebase-emulator integration tests in CI. Use a dry-run-first Firestore migration that preserves legacy records and skips already-migrated documents, with OpenAPI documentation, rate limiting, and structured request logging.",
     features: [
       {
         title: "Movie tracking & community",
         description:
-          "Built a React and Express application for movie tracking, ratings, profiles, and discussion boards.",
+          "Extended the team-built React and Express application with movie tracking, collaborative lists, reviews, and discussions. Backend checks restrict list changes to owners and permitted collaborators.",
       },
       {
         title: "Authentication & authorization",
@@ -255,7 +274,7 @@ export const projectDetails: ProjectDetail[] = [
       {
         title: "Backend maintenance tools",
         description:
-          "Added a reversible Firestore migration and OpenAPI documentation, alongside rate limiting and structured request logging.",
+          "Added a dry-run-first Firestore migration that preserves legacy records and skips existing targets, plus OpenAPI documentation, rate limiting, and structured request logging.",
       },
     ],
     architecture: [
@@ -263,7 +282,7 @@ export const projectDetails: ProjectDetail[] = [
         layer: "Frontend",
         items: [
           "React and TypeScript interface",
-          "Movie tracking, ratings, profiles, and discussion boards",
+          "Movie tracking, collaborative lists, reviews, and discussion boards",
         ],
       },
       {
@@ -279,7 +298,7 @@ export const projectDetails: ProjectDetail[] = [
         layer: "Testing & Maintenance",
         items: [
           "Supertest and Firebase-emulator integration tests in CI",
-          "Reversible Firestore migration",
+          "Dry-run-first Firestore migration that preserves legacy records",
           "OpenAPI documentation",
         ],
       },
@@ -288,7 +307,7 @@ export const projectDetails: ProjectDetail[] = [
       "Extended the original team project with backend security, testing, and CI",
       "Restricted edits through token verification, role checks, and resource ownership",
       "Added automated integration tests using Supertest and Firebase emulators",
-      "Documented the API and added a reversible data migration",
+      "Documented the API and added a migration that preserves legacy data",
     ],
   },
   {

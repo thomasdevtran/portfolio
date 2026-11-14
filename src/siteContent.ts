@@ -6,7 +6,7 @@ export const siteContent = {
     about: [
       "I’m Thomas, a software engineer based in Anaheim, California. I graduated from UC Irvine with a B.S. in Software Engineering in March 2026 and am pursuing a part-time M.S. in Computer Science at Cal State Fullerton, expected May 2028.",
       "My work spans browser extensions, full-stack web applications, and search systems. I enjoy taking a project from its first working version through the security, testing, and performance improvements that make it ready for real users.",
-      "I’m open to software engineering opportunities and relocation within California.",
+      "I’m open to software engineering opportunities and relocation.",
     ],
   },
   resume: {
@@ -35,10 +35,10 @@ export const siteContent = {
       date: "Sep 2025 – Mar 2026",
       context: "UC Irvine industry partnership · Irvine, CA",
       highlights: [
-        "Shipped a TypeScript Chrome extension to 500+ users, collaborating with engineers and data scientists from initial development through production release.",
-        "Reduced runtime API calls by 20% and page load time from about 1 second to under 500 ms by precomputing MongoDB telemetry into static JSON for 15+ product configurations.",
+        "Helped develop and ship a TypeScript Chrome extension to 500+ users, contributing from initial development through production release.",
+        "Reduced page load time from about 1 second to under 500 ms by precomputing MongoDB telemetry into static JSON for 15+ product configurations.",
         "Resolved integration race conditions by redesigning message passing between background service workers and content scripts.",
-        "Built a Cloudflare Workers and MongoDB backend for click tracking, with offline write buffering and synchronization when connectivity returns.",
+        "Co-built a Cloudflare Workers and MongoDB backend for click tracking, with offline write buffering and synchronization when connectivity returns.",
       ],
       projectId: "shoppyist",
     },
@@ -48,7 +48,7 @@ export const siteContent = {
     organization: "Troop 413",
     date: "2016 – 2022",
     description:
-      "Led a 25-person troop and coordinated 30 volunteers for an Eagle Scout service project, managing logistics, budget, and stakeholders.",
+      "Led a 25-person troop and organized an Eagle Scout service project.",
   },
   nav: {
     links: [
@@ -63,27 +63,27 @@ export const siteContent = {
   availability: "Open to opportunities",
   projects: [
     {
+      id: "block-by-cube",
+      category: "Live website · Full-stack application",
+      title: "Block by Cube",
+      summary:
+        "Plan real-life cube crafts from 1,100+ Minecraft items and blocks, plus player skins. Follow 3D build guides and save progress across devices with a private cloud library.",
+      tags: ["Vue 3", "TypeScript", "Supabase", "PostgreSQL", "Three.js"],
+      primaryHref: "https://www.blockbycube.com/",
+      primaryLabel: "Visit website",
+      note: "Browse freely · Optional accounts for private cloud saves",
+      featured: true,
+    },
+    {
       id: "vision-bucket",
       category: "Live demo · Full-stack application",
       title: "Vision Bucket",
       summary:
-        "Discover films, build a watchlist, write reviews, and join discussions. Try the no-sign-in demo, then explore the security, testing, and API work behind it.",
+        "Discover films, track a watchlist, and write reviews. Explore a React/Express platform with collaborative lists, API authorization, integration tests, and safe data migrations.",
       tags: ["React", "TypeScript", "Express", "Firestore"],
       primaryHref: "https://thomasdevtran.github.io/vision_bucket/#/",
       primaryLabel: "Try live demo",
       note: "No sign-in needed · Demo activity stays in your browser",
-      featured: true,
-    },
-    {
-      id: "block-by-cube",
-      category: "Live website · Creative tool",
-      title: "Block by Cube",
-      summary:
-        "Turn Minecraft items, blocks, and player skins into real-life cube crafts. Get paint palettes, material counts, and step-by-step guides with 2D and 3D previews.",
-      tags: ["Vue", "TypeScript", "Three.js"],
-      primaryHref: "https://www.blockbycube.com/",
-      primaryLabel: "Visit website",
-      note: "Free build guides · No account needed",
       featured: true,
     },
     {
@@ -114,27 +114,34 @@ export const siteContent = {
   skillGroups: [
     {
       title: "Languages",
-      items: ["TypeScript / JavaScript", "Python", "Java", "C / C++", "SQL"],
+      items: ["TypeScript / JavaScript", "Python", "SQL", "Java"],
     },
     {
       title: "Web & backend",
-      items: ["React", "Node.js / Express", "Cloudflare Workers", "REST APIs"],
+      items: [
+        "React / Vue 3",
+        "Three.js / Vite",
+        "Chrome Extensions (Manifest V3)",
+        "Node.js / Express / REST APIs",
+        "Cloudflare Workers / Vercel Functions",
+      ],
     },
     {
       title: "Data & tools",
       items: [
+        "Supabase / PostgreSQL",
         "MongoDB / Firestore",
-        "PostgreSQL / Firebase Auth",
-        "Docker",
+        "Firebase Auth / Redis",
         "Git / GitHub Actions",
+        "Linux",
       ],
     },
     {
       title: "Testing",
       items: [
-        "Jest / Pytest",
+        "Vitest / Jest",
         "Supertest",
-        "Firebase emulators",
+        "PGlite / Firebase emulators",
         "Unit & integration testing",
       ],
     },

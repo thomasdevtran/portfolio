@@ -15,7 +15,7 @@ Open http://localhost:3000/portfolio/. Use `npm run build` for production and `n
 
 - `src/siteContent.ts`: profile, experience, education, project summaries, skills, leadership, contact links, and résumé path.
 - `src/data/projectDetails.tsx`: project details. Roles, dates, repository links, and outcomes are aligned with the supplied résumé.
-- `public/Thomas-Tran-Resume.pdf`: an unchanged copy of the supplied PDF, linked in the header and contact section.
+- `public/Thomas-Tran-Resume.pdf`: the November 13, 2026 full-stack résumé, linked in the header and contact section. The Search Engine and Web Crawler heading omits the Coursework label.
 - `src/ProjectVisual.tsx`: abstract project illustrations, not screenshots.
 - `src/App.css` and `src/styles/ProjectPage.css`: shared design and responsive layouts.
 - `public/index.html`: page description and social metadata.
@@ -34,7 +34,9 @@ CRA's Jest version does not resolve React Router 7's package exports. The `jest.
 
 ## Live project showcase
 
-Vision Bucket and Block by Cube are featured first, with direct links to their live sites. Shoppyist and Search Engine & Web Crawler remain available as résumé projects. Each has its own case study.
+Block by Cube leads the featured projects, followed by Vision Bucket, with direct links to their live sites. Shoppyist and Search Engine & Web Crawler remain available as résumé projects. Each has its own case study.
+
+Block by Cube's case study includes Supabase accounts, a private PostgreSQL-backed build library, row-level security, private image storage, revision-checked saves, database quotas, and Vitest/PGlite migration checks. Discussion and moderation code is described as in development because the reviewed project README says hosted database activation is pending. Verify that status before describing those features as live.
 
 Vision Bucket's demo is explicitly described as a browser-local demo with live movie data, separate from the server-side authentication and persistence documented by its backend repository. The exact about-page link is also included in the case study.
 
